@@ -1,0 +1,10 @@
+table      {
+  border: 0.5px solid black;
+  table-layout: fixed;
+  width: 100%;
+
+}
+
+.left      {
+  width: 12.5%;;
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+        <table id="departments-table" class="table table-bordered"> 
+            <tr>
+                <th>Department</th>
+                <th class="text-center">Organisation</th>
+                <th class="text-center">Average salary</th>
+                <th class="text-center"></th>
+            </tr>
+        </table>
+</div>
+{% for el in depart_data %}
+    <div class="container">
+        <table id="departments-table" class="table table-bordered"> 
+            <tr>
+                <td class="text-center">{{ el.name }}</td>
+                <td class="text-center">{{ el.organisation }}</td>
+                <td class="text-center">{{ el.avg_salary }}$</td>
+                <td class="left text-center">
+                    <a href="/department" style="text-decoration:none;">
+                                <span>Edit</span>
+                            </a> 
+                <td class="left text-center">
+                    <a href="/departments/{{ el.id }}/del" style="text-decoration:none;">
+                                <span>Delete</span>
+                            </a>     
+              </td>
+          </td>
+            </tr>
+        </table>
+</div>
+{% endfor %}
+</div>
+
+
+{% endblock content %}

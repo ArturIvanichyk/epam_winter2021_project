@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Add employees
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="container">
+        	<form method="post">
+        		<label>Enter employee's name:</label>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="John Snow"><br>
+        		<label>Enter employee's birth date:</label>
+        		<input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="DD-MM-YYYY"><br>
+        		<label>Enter employee's salary:</label>
+        		<input type="text" class="form-control" name="salary" id="salary" placeholder="2000"><br>
+        		<label>Select department for the employee:</label>
+                    <select class="form-select" name="depart" id="depart">
+                                    {% for el in dep_data %}
+                                    <option>{{ el.name }} - {{ el.organisation }}</option>
+        							{% endfor %}
+                                </select>
+                <button class="btn btn-success mr-2" type="submit">Add</button>
+        	</form> 
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Edit employees
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+      <div class="card-body">
+      	<div class="accordion" id="accordion2">
+      	{% for item in emp_data %}
+  			<div class="card">
+  				<a class="btn dropdown-item" data-toggle="collapse" data-target="#collapse{{ item.id }}">{{ item.name }}</a>
+  			<div id="collapse{{ item.id }}" class="collapse" data-parent="#accordion2">
+     		 <div class="card-body">
+            	<a>
+            	<div class="container">
+        	<form action="/employees/{{ item.id }}/update" method="post">	
+        		<label>Enter employee's new name:</label>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}"><br>
+        		<label>Enter employee's new birth date:</label>
+        		<input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="{{ item.birth_date }}"><br>
+        		<label>Enter employee's new salary:</label>
+        		<input type="text" class="form-control" name="salary" id="salary" placeholder="{{ item.salary }}"><br>
+        		<label>Current department ----> {{ item.depart }}</label><br><br>
+        		<label>Select new department for the employee:</label>
+                    <select class="form-select" name="depart" id="depart">
+                                    {% for el in dep_data %}
+                                    <option>{{ el.name }} - {{ el.organisation }}</option>
+        							{% endfor %}
+                                </select>
+                <button href="/employees/{{ item.id }}/update" class="btn btn-success mr-2" type="submit">Update</button>
+        	</form> 
+        </div>
+            </a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+      </div>
+    </div>
+  </div>
+ <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          Delete employees
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+<div class="accordion" id="accordion3">
+      	{% for item in emp_data %}
+  			<div class="card">
+  			<a class="btn dropdown-item" data-toggle="collapse" data-target="#collapseT{{ item.id }}">{{ item.name }}</a>
+  			<div id="collapseT{{ item.id }}" class="collapse" data-parent="#accordion3">
+     		 <div class="card-body">
+            	<div class="container">
+                <a href="/employees/{{ item.id }}/del" class="btn btn-danger mr-2" type="submit">Delete</a>
+        </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
+

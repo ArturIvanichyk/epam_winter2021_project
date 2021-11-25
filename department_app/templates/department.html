@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Add departments
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="container">
+	      <form method="post">
+		      <label>Enter department's name:</label>
+		      <input type="text" class="form-control" name="name" id="name" placeholder="Research and Development"><br>
+		      <label>Enter organisation's name:</label>
+		      <input type="text" class="form-control" name="organisation" id="organisation" placeholder="Amazon"><br>
+		      <label>Enter department's average salary:</label>
+		      <input type="text" class="form-control" name="avg_salary" id="avg_salary" placeholder="2300"><br>
+		    <button class="btn btn-success" type="submit">Add</button>
+	      </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Edit departments
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+      	<div class="accordion" id="accordion2">
+              	{% for item in dep_data %}
+  			<div class="card">
+  				<a class="btn dropdown-item" data-toggle="collapse" data-target="#collapse{{ item.id }}" aria-expanded="true" aria-controls="collapse{{ item.id }}">{{ item.name }} - {{ item.organisation }}</a>
+  					    <div id="collapse{{ item.id }}" class="collapse"  data-parent="#accordion2">
+                <div class="card-body">
+                <a>
+            	<div class="container">
+        	<form action="/departments/{{ item.id }}/update" method="post">	
+        		<label>Enter department's new name:</label>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}"><br>
+        		<label>Enter organisation's new name:</label>
+        		<input type="text" class="form-control" name="organisation" id="organisation" placeholder="{{ item.organisation }}"><br>
+        		<label>Enter new average salary:</label>
+        		<input type="text" class="form-control" name="avg_salary" id="avg_salary" placeholder="{{ item.avg_salary }}"><br>
+                <button href="/departments/{{ item.id }}/update" class="btn btn-success mr-2" type="submit">Update</button>
+        	</form> 
+        </div>
+            </a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          Delete departments
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+		<div class="accordion" id="accordion3">
+      	{% for item in dep_data %}
+  			<div class="card">
+  			<a class="btn dropdown-item" data-toggle="collapse" data-target="#collapseT{{ item.id }}">{{ item.name }} - {{ item.organisation }}</a>
+  			<div id="collapseT{{ item.id }}" class="collapse" data-parent="#accordion3">
+     		 <div class="card-body">
+            	<div class="container">
+                <a href="/departments/{{ item.id }}/del" class="btn btn-danger mr-2" type="submit">Delete</a>
+        </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
