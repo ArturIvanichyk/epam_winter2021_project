@@ -12,9 +12,8 @@ from department_app.models.department import Item_department
 
 employees_page = Blueprint('employees_page', __name__, template_folder='templates')
 
-
 @employees_page.route("/employee", methods=['POST', 'GET'])
-def employee():
+def add_employee():
     ''' 
     Show user the page which allows manage employees (add, edit, delete) 
     Collect employee's input data from forms and add it to database
@@ -28,13 +27,22 @@ def employee():
         salary = request.form['salary']
         depart = request.form['depart']
 
+        #: get department's id by it's name
+        for item in dep_items:
+            if item.name == depart:
+                depart = int(item.id)
+                break
+
+        #: check if there is employee with same data
         for el in emp_items:
             if name == el.name and birth_date == el.birth_date:
                 return redirect('/employees')
 
-        item = Item_employee(name=name, birth_date=birth_date, salary=salary, depart=depart)
+        dep = Item_department.query.get(depart)
+        item = Item_employee(name=name, birth_date=birth_date, salary=salary, depart=dep)
 
         try:
+
             db.session.add(item)
             db.session.commit()
             return redirect('/employee')
@@ -46,7 +54,7 @@ def employee():
 
 
 @employees_page.route("/employees")
-def employees():
+def show_employees():
     '''
     Function gets employee's data from database 
     and displays it to user
@@ -62,12 +70,19 @@ def employees_update(id):
     Is used for updating employee's data
 
     '''
-    items = Item_employee.query.get(id)
+    emp_items = Item_employee.query.get(id)
+    dep_items = Item_department.query.all()
     if request.method == 'POST':
-        items.name = request.form['name']
-        items.birth_date = request.form['birth_date']
-        items.salary = request.form['salary']
-        items.depart = request.form['depart']
+        emp_items.name = request.form['name']
+        emp_items.birth_date = request.form['birth_date']
+        emp_items.salary = request.form['salary']
+        depart = request.form['depart']
+
+        for item in dep_items:
+            if item.name == depart:
+                depart = int(item.id)
+                
+        emp_items.depart = Item_department.query.get(depart)
         
     try:
         db.session.commit()

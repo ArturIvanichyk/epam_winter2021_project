@@ -1,6 +1,5 @@
 from department_app import db
 
-
 class Item_employee(db.Model):
     '''
     Employee model used to represent employees
@@ -21,17 +20,21 @@ class Item_employee(db.Model):
     #: employee's salary
     salary = db.Column(db.Integer, nullable=False)
 
-    #: department's name an employee works in
-    depart = db.Column(db.String(64), nullable=False)
-
+    #: database id of the department employee works in
+    department_id = db.Column(db.Integer, db.ForeignKey('department_db.id'))
 
     def __init__(self, name, birth_date, salary, depart):
-        #: Name of the department
+
         self.name = name
 
-        #: Organisation the department belongs to
         self.birth_date = birth_date
 
         self.salary = salary
 
         self.depart = depart
+
+
+
+
+
+

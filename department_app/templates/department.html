@@ -17,8 +17,6 @@
 		      <input type="text" class="form-control" name="name" id="name" placeholder="Research and Development"><br>
 		      <label>Enter organisation's name:</label>
 		      <input type="text" class="form-control" name="organisation" id="organisation" placeholder="Amazon"><br>
-		      <label>Enter department's average salary:</label>
-		      <input type="text" class="form-control" name="avg_salary" id="avg_salary" placeholder="2300"><br>
 		    <button class="btn btn-success" type="submit">Add</button>
 	      </form> 
         </div>
@@ -48,8 +46,6 @@
         		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}"><br>
         		<label>Enter organisation's new name:</label>
         		<input type="text" class="form-control" name="organisation" id="organisation" placeholder="{{ item.organisation }}"><br>
-        		<label>Enter new average salary:</label>
-        		<input type="text" class="form-control" name="avg_salary" id="avg_salary" placeholder="{{ item.avg_salary }}"><br>
                 <button href="/departments/{{ item.id }}/update" class="btn btn-success mr-2" type="submit">Update</button>
         	</form> 
         </div>

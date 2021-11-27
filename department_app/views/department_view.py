@@ -13,7 +13,7 @@ from department_app.models.department import Item_department
 departments_page = Blueprint('departments_page', __name__, template_folder='templates')
 
 @departments_page.route("/department", methods=['POST', 'GET'])
-def department():
+def add_department():
     ''' 
     Show user the page which allows manage departmants (add, edit, delete) 
     Collect department's input data from forms and add it to database
@@ -23,14 +23,12 @@ def department():
     if request.method == 'POST':
         name = request.form['name']
         organisation = request.form['organisation']
-        avg_salary = request.form['avg_salary']
         
         for el in dep_items:
             if name == el.name and organisation == el.organisation:
                 return redirect('/departments')
 
-        item = Item_department(name=name, organisation=organisation, avg_salary=avg_salary)
-
+        item = Item_department(name=name, organisation=organisation)
         try:
             db.session.add(item)
             db.session.commit()
@@ -43,13 +41,17 @@ def department():
 
 
 @departments_page.route("/departments")
-def departments():
+def show_departments():
     '''
     Function gets department's data from database 
     and displays it to user
-
     '''
     dep_items = Item_department.query.all()
+    employ_items = Item_employee.query.all()
+    for el in dep_items:
+        for val in employ_items:
+            el.avg_salary = Item_department.calculate_average_salary(val, el)
+    db.session.commit()
     return render_template('departments.html', depart_data=dep_items)
 
 
@@ -63,7 +65,6 @@ def departments_update(id):
     if request.method == 'POST':
         items.name = request.form['name']
         items.organisation = request.form['organisation']
-        items.avg_salary = request.form['avg_salary']
         
     try:
         db.session.commit()
@@ -75,7 +76,7 @@ def departments_update(id):
 @departments_page.route("/departments/<int:id>/del")
 def departments_del(id):
     '''
-    Is used for deleting department's data
+    Is used for deleting departments
 
     '''
     items = Item_department.query.get(id)

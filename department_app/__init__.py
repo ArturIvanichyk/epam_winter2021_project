@@ -7,11 +7,9 @@ modules:
 Subpackages:
 
 - `database`: contains modules used to populate database
-- `migrations`: contains migration files used to manage database schema
+- `migrations`: contains migration files used to manage database
 - `models`: contains modules with Python classes describing database models
 - `rest`: contains modules with RESTful service implementation
-- `schemas`: contains modules with serialization/deserialization schemas for \
-models
 - `service`: contains modules with classes used to work with database
 - `static`: contains web application static files (scripts, styles, images)
 - `templates`: contains web application html templates

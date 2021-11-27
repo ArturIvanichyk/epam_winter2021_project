@@ -3,7 +3,7 @@
 <div class="container">
         <table id="departments-table" class="table table-bordered"> 
             <tr>
-                <th>Employee</th>
+                <th class="text-center">Employee</th>
                 <th class="text-center">Birth date</th>
                 <th class="text-center">Salary</th>
                 <th class="text-center">Department</th>
@@ -19,7 +19,7 @@
                 <td class="text-center">{{ el.name }}</td>
                 <td class="text-center">{{ el.birth_date }}</td>
                 <td class="text-center">{{ el.salary }}$</td>
-                <td class="text-center">{{ el.depart }}</td>
+                <td class="text-center">{{ el.depart.name }}</td>
                 <td class="left text-center">
                   <a href="/employee" style="text-decoration:none;">
                     <span>Edit</span>

@@ -23,7 +23,7 @@
         		<label>Select department for the employee:</label>
                     <select class="form-select" name="depart" id="depart">
                                     {% for el in dep_data %}
-                                    <option>{{ el.name }} - {{ el.organisation }}</option>
+                                    <option>{{ el.name }}</option>
         							{% endfor %}
                                 </select>
                 <button class="btn btn-success mr-2" type="submit">Add</button>
@@ -57,11 +57,11 @@
         		<input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="{{ item.birth_date }}"><br>
         		<label>Enter employee's new salary:</label>
         		<input type="text" class="form-control" name="salary" id="salary" placeholder="{{ item.salary }}"><br>
-        		<label>Current department ----> {{ item.depart }}</label><br><br>
+        		<label>Current department ----> {{ item.depart.name }}</label><br><br>
         		<label>Select new department for the employee:</label>
                     <select class="form-select" name="depart" id="depart">
                                     {% for el in dep_data %}
-                                    <option>{{ el.name }} - {{ el.organisation }}</option>
+                                    <option>{{ el.name }}</option>
         							{% endfor %}
                                 </select>
                 <button href="/employees/{{ item.id }}/update" class="btn btn-success mr-2" type="submit">Update</button>
