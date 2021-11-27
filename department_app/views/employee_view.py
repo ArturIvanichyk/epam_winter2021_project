@@ -1,9 +1,7 @@
-"""
-Employee views used to manage employees on web application, this module
-defines the following classes:
+'''
+Employee views used to manage employees on web application, 
 
-- `EmployeeView`, class that defines employee views
-"""
+'''
 
 from flask import Blueprint, Flask, render_template, request, redirect
 from department_app import db

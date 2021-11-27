@@ -1,9 +1,7 @@
-"""
-Department views used to manage departments on web application, this module
-defines the following classes:
+'''
+Department views used to manage departments on web application, 
 
-- `DepartmentView`, class that defines department views
-"""
+'''
 
 from flask import Blueprint, Flask, render_template, request, redirect
 from department_app import db
