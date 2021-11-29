@@ -15,11 +15,11 @@
         <div class="container">
         	<form method="post">
         		<label>Enter employee's name:</label>
-        		<input type="text" class="form-control" name="name" id="name" placeholder="John Snow"><br>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="John Snow" required pattern="^[a-zA-Z]+$"><br>
         		<label>Enter employee's birth date:</label>
-        		<input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="DD-MM-YYYY"><br>
+        		<input type="date" min="1950-01-01" max="2021-12-31" class="form-control" name="birth_date" id="birth_date" required><br>
         		<label>Enter employee's salary:</label>
-        		<input type="text" class="form-control" name="salary" id="salary" placeholder="2000"><br>
+        		<input type="text" class="form-control" name="salary" id="salary" placeholder="2000" required pattern="^[ 0-9]+$"><br>
         		<label>Select department for the employee:</label>
                     <select class="form-select" name="depart" id="depart">
                                     {% for el in dep_data %}
@@ -52,11 +52,11 @@
             	<div class="container">
         	<form action="/employees/{{ item.id }}/update" method="post">	
         		<label>Enter employee's new name:</label>
-        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}"><br>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}" pattern="^[a-zA-Z]+$"><br>
         		<label>Enter employee's new birth date:</label>
-        		<input type="text" class="form-control" name="birth_date" id="birth_date" placeholder="{{ item.birth_date }}"><br>
+        		<input type="date" class="form-control" name="birth_date" id="birth_date"><br>
         		<label>Enter employee's new salary:</label>
-        		<input type="text" class="form-control" name="salary" id="salary" placeholder="{{ item.salary }}"><br>
+        		<input type="text" class="form-control" name="salary" id="salary" placeholder="{{ item.salary }}" pattern="^[ 0-9]+$"><br>
         		<label>Current department ----> {{ item.depart.name }}</label><br><br>
         		<label>Select new department for the employee:</label>
                     <select class="form-select" name="depart" id="depart">

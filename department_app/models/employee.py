@@ -15,7 +15,7 @@ class Item_employee(db.Model):
     name = db.Column(db.String(64), nullable=False)
 
     #: employee's date of birth
-    birth_date = db.Column(db.String(64), nullable=False)
+    birth_date = db.Column(db.String(10), nullable=False)
 
     #: employee's salary
     salary = db.Column(db.Integer, nullable=False)

@@ -59,10 +59,16 @@ def departments_update(id):
     Is used for updating department's data
 
     '''
-    items = Item_department.query.get(id)
+    dep_items = Item_department.query.get(id)
     if request.method == 'POST':
-        items.name = request.form['name']
-        items.organisation = request.form['organisation']
+        #: applies old data if the user doesn't specify new one
+        name = request.form['name']
+        if name:
+            dep_items.name = name
+
+        organisation = request.form['organisation']
+        if organisation:
+            dep_items.organisation = organisation
         
     try:
         db.session.commit()

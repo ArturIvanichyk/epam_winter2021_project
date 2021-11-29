@@ -4,6 +4,7 @@ Employee views used to manage employees on web application,
 '''
 
 from flask import Blueprint, Flask, render_template, request, redirect
+from datetime import date
 from department_app import db
 from department_app.models.employee import Item_employee
 from department_app.models.department import Item_department
@@ -71,9 +72,19 @@ def employees_update(id):
     emp_items = Item_employee.query.get(id)
     dep_items = Item_department.query.all()
     if request.method == 'POST':
-        emp_items.name = request.form['name']
-        emp_items.birth_date = request.form['birth_date']
-        emp_items.salary = request.form['salary']
+        #: applies old data if the user doesn't specify new one
+        name = request.form['name']
+        if name:
+            emp_items.name = name
+
+        birth_date = request.form['birth_date']
+        if birth_date:
+            emp_items.birth_date = birth_date
+
+        salary = request.form['salary']
+        if salary:
+            emp_items.salary = salary
+
         depart = request.form['depart']
 
         for item in dep_items:
