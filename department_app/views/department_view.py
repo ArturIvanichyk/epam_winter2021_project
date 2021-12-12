@@ -7,6 +7,7 @@ from flask import Blueprint, Flask, render_template, request, redirect
 from department_app import db
 from department_app.models.employee import Item_employee
 from department_app.models.department import Item_department
+from department_app.service import department_service
 
 departments_page = Blueprint('departments_page', __name__, template_folder='templates')
 
@@ -44,13 +45,9 @@ def show_departments():
     Function gets department's data from database 
     and displays it to user
     '''
-    dep_items = Item_department.query.all()
-    employ_items = Item_employee.query.all()
-    for el in dep_items:
-        for val in employ_items:
-            el.avg_salary = Item_department.calculate_average_salary(val, el)
-    db.session.commit()
-    return render_template('departments.html', depart_data=dep_items)
+    departments = Item_department.query.all()
+    department_service.calculate_average_salary(departments)
+    return render_template('departments.html', depart_data=departments)
 
 
 @departments_page.route("/departments/<int:id>/update", methods=['POST', 'GET'])
