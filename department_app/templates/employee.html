@@ -15,7 +15,7 @@
         <div class="container">
         	<form method="post">
         		<label>Enter employee's name:</label>
-        		<input type="text" class="form-control" name="name" id="name" placeholder="John Snow" required pattern="^[a-zA-Z]+$"><br>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="John Snow" required pattern="^[a-zA-Z\s]+$"><br>
         		<label>Enter employee's birth date:</label>
         		<input type="date" min="1950-01-01" max="2021-12-31" class="form-control" name="birth_date" id="birth_date" required><br>
         		<label>Enter employee's salary:</label>
@@ -52,7 +52,7 @@
             	<div class="container">
         	<form action="/employees/{{ item.id }}/update" method="post">	
         		<label>Enter employee's new name:</label>
-        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}" pattern="^[a-zA-Z]+$"><br>
+        		<input type="text" class="form-control" name="name" id="name" placeholder="{{ item.name }}" pattern="^[a-zA-Z\s]+$"><br>
         		<label>Enter employee's new birth date:</label>
         		<input type="date" class="form-control" name="birth_date" id="birth_date"><br>
         		<label>Enter employee's new salary:</label>
