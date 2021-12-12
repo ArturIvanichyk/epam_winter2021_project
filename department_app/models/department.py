@@ -36,12 +36,15 @@ class Item_department(db.Model):
         #: Employees working in the department
         self.employees = employees
 
-    def calculate_average_salary(emp, depart):
-        '''
-        Returns average salary of the department
 
+    def to_dict(self):
         '''
-        try:
-            return int(sum(map(lambda emp: int(emp.salary), depart.employees)) / len(depart.employees))
-        except ZeroDivisionError:
-            return 0
+        Return a dictionary from its fields
+        return: the department in json format
+        '''
+        return {
+            'id': self.id,
+            'name': self.name,
+            'organisation': self.organisation,
+            'avg_salary': self.avg_salary,
+            }

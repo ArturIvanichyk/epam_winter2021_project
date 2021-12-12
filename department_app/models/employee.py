@@ -1,4 +1,5 @@
 from department_app import db
+from .department import Item_department
 
 class Item_employee(db.Model):
     '''
@@ -34,7 +35,17 @@ class Item_employee(db.Model):
         self.depart = depart
 
 
-
-
+    def to_dict(self):
+        '''
+        Return a dictionary from its fields
+        return: the employee in json format
+        '''
+        return {
+            'id' : self.id,
+            'name': self.name,
+            'birth_date': self.birth_date,
+            'salary': self.salary,
+            'department': Item_department.query.get_or_404(self.department_id).name
+            }
 
 
