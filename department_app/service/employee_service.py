@@ -19,12 +19,11 @@ def add_employee(name, birth_date, salary, department_id):
     Add a new department to data base
 
     '''
-    department = Item_department.query.get_or_404(department_id)
     employee = Item_employee(
         name=name,
         birth_date=birth_date,
         salary=salary,
-        depart=department
+        department_id=department_id
         )
 
     db.session.add(employee)
@@ -42,13 +41,12 @@ def update_employee(id, name, birth_date, salary, department_id):
     '''
     Update an existing employee
     '''
-    department = Item_department.query.get_or_404(department_id)
     employee = Item_employee.query.get_or_404(id)
 
     employee.name = name
     employee.birth_date = birth_date
     employee.salary = salary
-    employee.depart = department
+    employee.department_id = department_id
 
     db.session.commit()
 
@@ -69,8 +67,7 @@ def update_employee_patch(id, name, birth_date, salary, department_id):
         employee.salary = salary
 
     if department_id:
-        department = Item_department.query.get_or_404(department_id)
-        employee.depart = department
+        employee.department_id = department_id
 
     db.session.commit()
 
