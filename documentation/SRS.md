@@ -70,13 +70,16 @@ User clicks the 'Departments' drop-down button on the home page and chooses 'Man
 
 Pic. 3.1 Manage departments page
 
+
 ![alt text](mockups/manage_departments_add.png)
 
 Pic. 3.2 Add departments
 
+
 ![alt text](mockups/manage_departments_edit.png)
 
 Pic. 3.3 Edit departments
+
 
 ![alt text](mockups/manage_departments_delete.png)
 
@@ -125,13 +128,16 @@ User clicks the 'Employee' drop-down button on the home page and chooses 'Manage
 
 Pic. 4.1 Manage employees page
 
+
 ![alt text](mockups/manage_employees_add.png)
 
 Pic. 4.2 Add employees
 
+
 ![alt text](mockups/manage_employees_edit.png)
 
 Pic. 4.3 Edit employees
+
 
 ![alt text](mockups/manage_employees_delete.png)
 
