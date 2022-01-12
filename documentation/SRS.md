@@ -35,7 +35,7 @@ Display the list of departments
 
 User clicks the 'Departments' drop-down list on the home page and chooses 'Browse departments' which redirects them to the departments page where they can see the following columns:
 
-   1\. Name
+   1\. Department (name of the department)
    
    2\. Organisation
    
