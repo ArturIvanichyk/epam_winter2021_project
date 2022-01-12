@@ -18,33 +18,21 @@ class Item_department(db.Model):
     organisation = db.Column(db.String(64), nullable=False)
 
     #: average salary of the department
-    avg_salary = db.Column(db.Integer, nullable=False)
+    avg_salary = db.Column(db.Integer, nullable=True)
     
     #: Employees working in the department
     employees = db.relationship('Item_employee', backref=db.backref('depart'))
-
-    def __init__(self, name, organisation, avg_salary=0, employees=None):
-
-        self.name = name
-
-        self.organisation = organisation
-
-        self.avg_salary = avg_salary
-
-        if employees is None:
-            employees = []
-        #: Employees working in the department
-        self.employees = employees
 
 
     def to_dict(self):
         '''
         Return a dictionary from its fields
-        return: the department in json format
+        
         '''
         return {
             'id': self.id,
             'name': self.name,
             'organisation': self.organisation,
             'avg_salary': self.avg_salary,
+            'employees': [employee.to_dict() for employee in self.employees]
             }

@@ -24,21 +24,11 @@ class Item_employee(db.Model):
     #: database id of the department employee works in
     department_id = db.Column(db.Integer, db.ForeignKey('department_db.id'))
 
-    def __init__(self, name, birth_date, salary, depart):
-
-        self.name = name
-
-        self.birth_date = birth_date
-
-        self.salary = salary
-
-        self.depart = depart
-
 
     def to_dict(self):
         '''
         Return a dictionary from its fields
-        return: the employee in json format
+        
         '''
         return {
             'id' : self.id,
