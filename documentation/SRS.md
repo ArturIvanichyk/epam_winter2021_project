@@ -69,18 +69,15 @@ User clicks the 'Departments' drop-down button on the home page and chooses 'Man
 ![alt text](mockups/manage_departments.png)
 
 Pic. 3.1 Manage departments page
-
-
+***
 ![alt text](mockups/manage_departments_add.png)
 
 Pic. 3.2 Add departments
-
-
+***
 ![alt text](mockups/manage_departments_edit.png)
 
 Pic. 3.3 Edit departments
-
-
+***
 ![alt text](mockups/manage_departments_delete.png)
 
 Pic. 3.4 Delete departments
