@@ -44,7 +44,7 @@ def add_employee():
 
             db.session.add(item)
             db.session.commit()
-            return redirect('/employee')
+            return redirect('/employees')
         except:
              return "Something is wrong"
     else:
