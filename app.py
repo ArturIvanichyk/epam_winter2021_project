@@ -1,7 +1,6 @@
-from department_app import create_app
-from department_app.database import populate
-
-app = create_app()
+from department_app import app
+#from department_app.database import populate
+#populate.populate_database()
 if __name__ == '__main__':
-    # populate.populate_database()
     app.run(debug=True)
+    
