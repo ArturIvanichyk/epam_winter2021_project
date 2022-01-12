@@ -124,18 +124,15 @@ User clicks the 'Employee' drop-down button on the home page and chooses 'Manage
 ![alt text](mockups/manage_employees.png)
 
 Pic. 4.1 Manage employees page
-
-
+***
 ![alt text](mockups/manage_employees_add.png)
 
 Pic. 4.2 Add employees
-
-
+***
 ![alt text](mockups/manage_employees_edit.png)
 
 Pic. 4.3 Edit employees
-
-
+***
 ![alt text](mockups/manage_employees_delete.png)
 
 Pic. 4.4 Delete employees
