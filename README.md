@@ -4,21 +4,18 @@ Department App is a simple web application for managing departments and employee
 It uses RESTful web service to perform CRUD operations.
 The user is allowed to:
 
-1. Register and log in
-   
-
-2. Check the lists of departments with department name, description, employee count and average salary  columns. 
+1. Check the lists of departments with department name, description, employee count and average salary  columns. 
    
     Employee count and average salary are calculated automatically based on employees data
    
 
-3. Check the lists of employees with employee name, department in which the employee is, salary and birthday columns.
+2. Check the lists of employees with employee name, department in which the employee is, salary and birthday columns.
 
 
-4. Perform operations with departments such as adding, editing, deleting
+3. Perform operations with departments such as adding, editing, deleting
    
 
-5. Perform operations with employees such as adding, assigning, editing, deleting
+4. Perform operations with employees such as adding, assigning, editing, deleting
 ***
 ### Start using the application
 
