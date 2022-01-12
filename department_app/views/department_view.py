@@ -69,7 +69,7 @@ def departments_update(id):
         
     try:
         db.session.commit()
-        return redirect("/department")
+        return redirect("/departments")
     except:
         return "Something is wrong"
 

@@ -37,8 +37,8 @@ def add_employee():
             if name == el.name and birth_date == el.birth_date:
                 return redirect('/employees')
 
-        dep = Item_department.query.get(depart)
-        item = Item_employee(name=name, birth_date=birth_date, salary=salary, depart=dep)
+        
+        item = Item_employee(name=name, birth_date=birth_date, salary=salary, department_id=depart)
 
         try:
 
@@ -90,12 +90,13 @@ def employees_update(id):
         for item in dep_items:
             if item.name == depart:
                 depart = int(item.id)
+                break
                 
-        emp_items.depart = Item_department.query.get(depart)
+        emp_items.department_id = depart
         
     try:
         db.session.commit()
-        return redirect("/employee")
+        return redirect("/employees")
     except:
         return "Something is wrong"
 
