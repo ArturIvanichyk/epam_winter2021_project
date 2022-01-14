@@ -21,7 +21,7 @@ The user is allowed to:
 ***
 ### Start using the application
 
-Python3 must already be installed
+Python must already be installed
 ***
 ### Deployment
 
