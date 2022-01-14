@@ -20,18 +20,21 @@ def add_department():
     '''
     dep_items = Item_department.query.all()
     if request.method == 'POST':
-        name = request.form['name']
-        organisation = request.form['organisation']
-        
-        for el in dep_items:
-            if name == el.name and organisation == el.organisation:
-                return redirect('/departments')
+        try:
+            name = request.form['name']
+            organisation = request.form['organisation']
+            
+            for el in dep_items:
+                if name == el.name and organisation == el.organisation:
+                    return redirect('/departments')
 
-        item = Item_department(name=name, organisation=organisation)
+            item = Item_department(name=name, organisation=organisation)
 
-        db.session.add(item)
-        db.session.commit()
-        return redirect('/department')
+            db.session.add(item)
+            db.session.commit()
+            return redirect('/department')
+        except:
+            return 'Something wrong', 400
     else:
         return render_template('department.html', dep_data=dep_items)
 
@@ -57,15 +60,18 @@ def departments_update(id):
     dep_items = Item_department.query.get(id)
     if request.method == 'POST':
         #: applies old data if the user doesn't specify new one
-        name = request.form['name']
-        if name:
-            dep_items.name = name
+        try:
+            name = request.form['name']
+            if name:
+                dep_items.name = name
 
-        organisation = request.form['organisation']
-        if organisation:
-            dep_items.organisation = organisation
+            organisation = request.form['organisation']
+            if organisation:
+                dep_items.organisation = organisation
         
-        db.session.commit()
+            db.session.commit()
+        except:
+            return 'Something wrong', 400
     return redirect("/departments")
 
 
@@ -76,7 +82,7 @@ def departments_del(id):
 
     '''
     items = Item_department.query.get(id)
-
+    
     db.session.delete(items)
     db.session.commit()
     return redirect("/departments")

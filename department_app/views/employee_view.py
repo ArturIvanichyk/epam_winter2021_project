@@ -21,31 +21,31 @@ def add_employee():
     dep_items = Item_department.query.all()
     emp_items = Item_employee.query.all()
     if request.method == 'POST':
-        name = request.form['name']
-        birth_date = request.form['birth_date']
-        salary = request.form['salary']
-        depart = request.form['depart']
-
-        #: get department's id by it's name
-        for item in dep_items:
-            if item.name == depart:
-                depart = int(item.id)
-                break
-
-        #: check if there is employee with same data
-        for el in emp_items:
-            if name == el.name and birth_date == el.birth_date:
-                return redirect('/employees')
-
-        item = Item_employee(name=name, birth_date=birth_date, salary=salary, department_id=depart)
-
         try:
+            name = request.form['name']
+            birth_date = request.form['birth_date']
+            salary = request.form['salary']
+            depart = request.form['depart']
+
+            #: get department's id by it's name
+            for item in dep_items:
+                if item.name == depart:
+                    depart = int(item.id)
+                    break
+
+            #: check if there is employee with same data
+            for el in emp_items:
+                if name == el.name and birth_date == el.birth_date:
+                    return redirect('/employees')
+
+            item = Item_employee(name=name, birth_date=birth_date, salary=salary, department_id=depart)
+
 
             db.session.add(item)
             db.session.commit()
             return redirect('/employees')
         except:
-             return "Something is wrong"
+             return 'Something is wrong', 400
     else:
         return render_template('employee.html', dep_data=dep_items, emp_data=emp_items)
 
@@ -71,33 +71,35 @@ def employees_update(id):
     emp_items = Item_employee.query.get(id)
     dep_items = Item_department.query.all()
     if request.method == 'POST':
-        #: applies old data if the user doesn't specify new one
-        name = request.form['name']
-        if name:
-            emp_items.name = name
+        try:
+            #: applies old data if the user doesn't specify new one
+            name = request.form['name']
+            if name:
+                emp_items.name = name
 
-        birth_date = request.form['birth_date']
-        if birth_date:
-            emp_items.birth_date = birth_date
+            birth_date = request.form['birth_date']
+            if birth_date:
+                emp_items.birth_date = birth_date
 
-        salary = request.form['salary']
-        if salary:
-            emp_items.salary = salary
+            salary = request.form['salary']
+            if salary:
+                emp_items.salary = salary
 
-        depart = request.form['depart']
+            depart = request.form['depart']
 
-        for item in dep_items:
-            if item.name == depart:
-                depart = int(item.id)
-                break
+            for item in dep_items:
+                if item.name == depart:
+                    depart = int(item.id)
+                    break
                 
-        emp_items.department_id = depart
+            emp_items.department_id = depart
         
-    try:
-        db.session.commit()
-        return redirect("/employees")
-    except:
-        return "Something is wrong"
+
+            db.session.commit()
+            return redirect("/employees")
+        except:
+            return 'Something is wrong', 400
+    return redirect("/employees")
 
 
 @employees_page.route("/employees/<int:id>/del")
@@ -107,9 +109,7 @@ def employees_del(id):
 
     '''
     items = Item_employee.query.get(id)
-    try:
-        db.session.delete(items)
-        db.session.commit()
-        return redirect("/employees")
-    except:
-        return "Something is wrong"
+
+    db.session.delete(items)
+    db.session.commit()
+    return redirect("/employees")
