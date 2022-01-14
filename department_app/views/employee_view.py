@@ -37,7 +37,6 @@ def add_employee():
             if name == el.name and birth_date == el.birth_date:
                 return redirect('/employees')
 
-        
         item = Item_employee(name=name, birth_date=birth_date, salary=salary, department_id=depart)
 
         try:

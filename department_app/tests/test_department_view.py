@@ -4,8 +4,9 @@ This module defines the test cases for employees' views
 """
 import http
 
-from department_app import app
+from department_app import app, db
 from department_app.tests.conftest import BaseTestCase
+from department_app.models.department import Item_department
 
 
 class TestDepartmentView(BaseTestCase):
@@ -41,8 +42,12 @@ class TestDepartmentView(BaseTestCase):
         """
         Testing /departments/<id>/del page 
         """
+        department = Item_department(name='name', organisation='organisation')
+        db.session.add(department)
+        db.session.commit()
+
         client = app.test_client()
         response = client.get('/departments/1/del')
-        assert response.status_code == http.HTTPStatus.OK
+        assert response.status_code == http.HTTPStatus.FOUND
 
 
