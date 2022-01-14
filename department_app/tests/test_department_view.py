@@ -19,8 +19,10 @@ class TestDepartmentView(BaseTestCase):
         Testing /department page 
         """
         client = app.test_client()
-        response = client.get('/department')
-        assert response.status_code == http.HTTPStatus.OK
+        response1 = client.get('/department')
+        response2 = client.post('/department')
+        assert response1.status_code == http.HTTPStatus.OK
+        assert response2.status_code == http.HTTPStatus.BAD_REQUEST
 
     def test_departments_page(self):
         """
@@ -35,8 +37,10 @@ class TestDepartmentView(BaseTestCase):
         Testing /departments/<id>/update page 
         """
         client = app.test_client()
-        response = client.get('/departments/1/update')
-        assert response.status_code == http.HTTPStatus.FOUND
+        response1 = client.get('/departments/1/update')
+        response2 = client.post('/departments/1/update')
+        assert response1.status_code == http.HTTPStatus.FOUND
+        assert response2.status_code == http.HTTPStatus.BAD_REQUEST
 
     def test_department_delete_page(self):
         """
