@@ -33,13 +33,16 @@ class EmployeeListApi(Resource):
         
         '''
         employee_json = request.json
-        if not employee_json:
-            return {'message': 'Wrong data'}, 400
+        try:
+            if not employee_json:
+                return {'message': 'Wrong data'}, 400
 
-        elif employee_json['name'] == '' or \
-            employee_json['birth_date'] == '' or \
-            employee_json['salary'] == '' or \
-            employee_json['department_id'] == '':
+            elif employee_json['name'] == '' or \
+                employee_json['birth_date'] == '' or \
+                employee_json['salary'] == '' or \
+                employee_json['department_id'] == '':
+                return {'message': 'Wrong data'}, 400
+        except KeyError:
             return {'message': 'Wrong data'}, 400
 
         try:
@@ -97,6 +100,13 @@ class EmployeeApi(Resource):
 
         """
         employee_json = request.json
+
+        if not employee_json.get('name') and \
+           not employee_json.get('birth_date') and \
+           not employee_json.get('salary') and \
+           not employee_json.get('department_id'):
+            return {'message': 'Wrong data'}, 400
+
         try:
             employee_service.update_employee_patch(
                 id,

@@ -89,7 +89,12 @@ class DepartmentApi(Resource):
 
         """
         department_json = request.json
+        
+        if not department_json.get('name') and not department_json.get('organisation'):
+            return {'message': 'Wrong data'}, 400
+
         try:
+            name = department_json['name']
             department_service.update_department_patch(
                 id,
                 name=department_json.get('name'),
