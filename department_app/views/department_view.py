@@ -28,12 +28,10 @@ def add_department():
                 return redirect('/departments')
 
         item = Item_department(name=name, organisation=organisation)
-        try:
-            db.session.add(item)
-            db.session.commit()
-            return redirect('/department')
-        except:
-            return "Something is wrong"
+
+        db.session.add(item)
+        db.session.commit()
+        return redirect('/department')
     else:
         return render_template('department.html', dep_data=dep_items)
 
@@ -67,11 +65,8 @@ def departments_update(id):
         if organisation:
             dep_items.organisation = organisation
         
-    try:
         db.session.commit()
-        return redirect("/departments")
-    except:
-        return "Something is wrong"
+    return redirect("/departments")
 
 
 @departments_page.route("/departments/<int:id>/del")
@@ -81,9 +76,7 @@ def departments_del(id):
 
     '''
     items = Item_department.query.get(id)
-    try:
-        db.session.delete(items)
-        db.session.commit()
-        return redirect("/departments")
-    except:
-        return "Something is wrong"
+
+    db.session.delete(items)
+    db.session.commit()
+    return redirect("/departments")
