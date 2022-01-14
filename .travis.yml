@@ -4,5 +4,5 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - coveralls department_app
+  - coverage run -m unittest discover department_app/tests
 
