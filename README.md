@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/ArturIvanichyk/epam_winter2021_project/badge.svg?branch=main)](https://coveralls.io/github/ArturIvanichyk/epam_winter2021_project?branch=main)(92)
+[![Coverage Status](https://coveralls.io/repos/github/ArturIvanichyk/epam_winter2021_project/badge.svg?branch=main)](https://coveralls.io/github/ArturIvanichyk/epam_winter2021_project?branch=main)
 
 
 # Department App
